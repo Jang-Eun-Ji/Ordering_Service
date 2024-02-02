@@ -5,7 +5,7 @@ import org.spring.Item.domain.Item;
 import org.spring.Member.domain.Member;
 
 @Data
-public class OrderingResponseDto {
+public class OrderingResDto {
     Member member;
     String orderStatus;
     Item item;

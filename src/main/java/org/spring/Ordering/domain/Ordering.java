@@ -5,15 +5,16 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.spring.Member.domain.Member;
+import org.spring.OrderItem.domain.OrderItem;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor
-@Builder
-@AllArgsConstructor
 public class Ordering {
 
     @Setter
@@ -26,8 +27,10 @@ public class Ordering {
     private Member member;
 
     @Enumerated(EnumType.STRING)
-    @ColumnDefault("ORDERED")
-    private OrderStatus orderStatus;
+    private OrderStatus orderStatus = OrderStatus.ORDERED;
+
+    @OneToMany(mappedBy = "ordering", cascade = CascadeType.PERSIST)
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @CreationTimestamp
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -35,5 +38,15 @@ public class Ordering {
     @UpdateTimestamp
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     LocalDateTime updatedTime;
+
+    @Builder
+    public Ordering(Member member){
+        this.member = member;
+    }
+
+
+    public void cancleOrder(){
+        this.orderStatus = OrderStatus.CANCELED;
+    }
 
 }

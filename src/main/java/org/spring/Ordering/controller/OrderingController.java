@@ -1,14 +1,13 @@
-package org.spring.Ordering.controller.controller;
+package org.spring.Ordering.controller;
 
-import org.spring.Ordering.Dto.OrderingRequestDto;
-import org.spring.Ordering.Dto.OrderingResponseDto;
-import org.spring.Ordering.service.OrderingService;
+import org.spring.Ordering.Dto.OrderingReqDto;
+import org.spring.Ordering.common.CommonResponseDto;
 import org.spring.Ordering.domain.Ordering;
+import org.spring.Ordering.service.OrderingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 public class OrderingController {
@@ -19,10 +18,12 @@ public class OrderingController {
         this.orderingService = orderingService;
     }
 
-    @PostMapping("/order/new")
-    public String orderingCreate(@RequestBody OrderingRequestDto orderingRequestDto) {
-        orderingService.orderingCreate(orderingRequestDto);
-        return "ok";
+    @PostMapping("/order/create")
+    public ResponseEntity<CommonResponseDto> orderingCreate(@RequestBody OrderingReqDto orderingReqDto) {
+        Ordering ordering = orderingService.orderingCreate(orderingReqDto);
+        return new ResponseEntity<>(new CommonResponseDto
+                (HttpStatus.CREATED, "item succesfully create", ordering.getId()),
+                HttpStatus.CREATED);
     }
 //    @GetMapping("/orders")
 //    public List<OrderingResponseDto> orderList(){
