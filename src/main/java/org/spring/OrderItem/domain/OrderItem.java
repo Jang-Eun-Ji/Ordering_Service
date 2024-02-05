@@ -20,14 +20,14 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @Column
-//    private String quantity;
-//    @JoinColumn(name = "item_id")
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Item item;
-//    @JoinColumn(name = "ordering_id")
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Ordering ordering;
+
+    private int quantity;
+    @JoinColumn(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Item item;
+    @JoinColumn(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Ordering ordering;
     @CreationTimestamp
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     LocalDateTime createdTime;

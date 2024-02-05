@@ -39,7 +39,7 @@ public class Ordering {
     @Column(columnDefinition = "TIMESTAMP ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     LocalDateTime updatedTime;
 
-    @Builder
+    @Builder // allarg에 builder 붙이면 안의 객체를 다 정의하지 않으면 null로 값이 설정됨/ 기본값을 설정해도 null임 (builder default 는 기본값 설정됨)
     public Ordering(Member member){
         this.member = member;
     }

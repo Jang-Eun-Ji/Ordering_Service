@@ -50,7 +50,7 @@ public class JwtAuthFilter extends GenericFilter {
 
                 Authentication authentication = new UsernamePasswordAuthenticationToken
                         (userDetails, "", userDetails.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                SecurityContextHolder.getContext().setAuthentication(authentication); // 토큰의 특성: api요청이 올때마다 authen 객체를 만들어야함
             }
 //            dofilter : filterahain에서 그다음 filtering으로 넘어가도록 하는 메소드
             chain.doFilter(request, response);

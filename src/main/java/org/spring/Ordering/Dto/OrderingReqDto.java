@@ -5,10 +5,9 @@ import lombok.Data;
 import java.util.List;
 @Data
 public class OrderingReqDto {
-//    private List<Long> itemIds;
-//    private List<Long> counts;
-    private List<OrderingReqDto> orderingReqDtos;
-    private static class OrderReqItemDto{
+    private List<OrderReqItemDto> orderReqItemDtos;
+    @Data
+    public static class OrderReqItemDto{
         private Long itemId;
         private int count;
     }
