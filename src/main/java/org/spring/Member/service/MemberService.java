@@ -71,13 +71,13 @@ public class MemberService {
 //        return memberResponseDto;
 //
 //    }
-    public List<Ordering> orderingList(Long id){
-       Optional<Member> member = memberRepository.findById(id);
-       List<Ordering> orderings = new ArrayList<>();
-        for (Ordering ordering : member.get().getOrderings()) {
-            orderings.add(ordering);
-        }
-        return orderings;
-    }
+//    public List<Ordering> orderingList(Long id){
+//       Optional<Member> member = memberRepository.findById(id);
+//       List<Ordering> orderings = new ArrayList<>();
+//        for (Ordering ordering : member.get().getOrderings()) {
+//            orderings.add(ordering);
+//        }
+//        return orderings;
+//    }
 
 }

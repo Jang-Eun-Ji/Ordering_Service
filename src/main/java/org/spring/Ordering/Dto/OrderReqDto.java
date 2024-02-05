@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.util.List;
 @Data
-public class OrderingReqDto {
+public class OrderReqDto {
     private List<OrderReqItemDto> orderReqItemDtos;
     @Data
     public static class OrderReqItemDto{
